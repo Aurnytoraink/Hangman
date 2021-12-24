@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=hangman
+Exec=hangman
+Icon=com.github.Aurnytoraink.HangmanGame
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
