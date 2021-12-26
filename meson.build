@@ -5,9 +5,19 @@ project('hangman',
                    ],
 )
 
+dependency('gtk4', version: '>= 4.5.0')
+dependency('libadwaita-1', version: '>=1.0.0')
+
+pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
+
 i18n = import('i18n')
 
-
+if get_option('profile') == 'development'
+  profile = 'Devel'
+else
+  profile = ''
+endif
+application_id = 'com.github.Aurnytoraink.HangmanGame@0@'.format(profile)
 
 subdir('data')
 subdir('src')

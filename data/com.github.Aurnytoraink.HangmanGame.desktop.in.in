@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=hangman
+Name=HangMan
 Exec=hangman
-Icon=com.github.Aurnytoraink.HangmanGame
+Icon=@application_id@
 Terminal=false
 Type=Application
 Categories=GTK;

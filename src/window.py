@@ -18,7 +18,7 @@
 from gi.repository import Gtk
 
 
-@Gtk.Template(resource_path='/com/github/Aurnytoraink/HangmanGame/window.ui')
+@Gtk.Template(resource_path='/com/github/Aurnytoraink/HangmanGame/ui/window.ui')
 class HangmanWindow(Gtk.ApplicationWindow):
     __gtype_name__ = 'HangmanWindow'
 
@@ -33,8 +33,9 @@ class AboutDialog(Gtk.AboutDialog):
     def __init__(self, parent):
         Gtk.AboutDialog.__init__(self)
         self.props.program_name = 'hangman'
-        self.props.version = "0.1.0"
+        self.props.version = "0.1"
         self.props.authors = ['Aurnytoraink']
         self.props.copyright = '(C) 2021 Aurnytoraink'
         self.props.logo_icon_name = 'com.github.Aurnytoraink.HangmanGame'
+        self.props.modal = True
         self.set_transient_for(parent)
