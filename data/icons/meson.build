@@ -4,7 +4,7 @@ install_data(
 )
 
 install_data(
-  '@0@-symbolic.svg'.format(application_id),
+  '@0@-symbolic.svg'.format(base_id),
   install_dir:  get_option('datadir') / 'icons' / 'hicolor' / 'symbolic' / 'apps',
   rename: '@0@-symbolic.svg'.format(application_id)
 )

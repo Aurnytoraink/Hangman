@@ -18,6 +18,7 @@ else
   profile = ''
 endif
 application_id = 'com.github.Aurnytoraink.HangmanGame@0@'.format(profile)
+base_id = 'com.github.Aurnytoraink.HangmanGame'
 
 subdir('data')
 subdir('src')

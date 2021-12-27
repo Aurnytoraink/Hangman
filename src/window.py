@@ -26,16 +26,3 @@ class HangmanWindow(Gtk.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-
-class AboutDialog(Gtk.AboutDialog):
-
-    def __init__(self, parent):
-        Gtk.AboutDialog.__init__(self)
-        self.props.program_name = 'hangman'
-        self.props.version = "0.1"
-        self.props.authors = ['Aurnytoraink']
-        self.props.copyright = '(C) 2021 Aurnytoraink'
-        self.props.logo_icon_name = 'com.github.Aurnytoraink.HangmanGame'
-        self.props.modal = True
-        self.set_transient_for(parent)

@@ -18,28 +18,41 @@
 import sys
 import gi
 
-gi.require_version('Gtk', '4.0')
+from gi.repository import Gtk, Gio, Adw
 
-from gi.repository import Gtk, Gio
-
-from .window import HangmanWindow, AboutDialog
+from .window import HangmanWindow
 
 
-class Application(Gtk.Application):
-    def __init__(self):
-        super().__init__(application_id='com.github.Aurnytoraink.HangmanGame',
+class Application(Adw.Application):
+    def __init__(self, version, application_id):
+        super().__init__(application_id=application_id,
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
+        self.version = version
 
     def do_activate(self):
         win = self.props.active_window
         if not win:
             win = HangmanWindow(application=self)
+            if self.props.application_id.endswith('Devel'):
+                win.get_style_context().add_class('devel')
         self.create_action('about', self.on_about_action)
         self.create_action('preferences', self.on_preferences_action)
         win.present()
 
-    def on_about_action(self, widget, _):
-        about = AboutDialog(self.props.active_window)
+    def on_about_action(self, widget, *param):
+        about = Gtk.AboutDialog()
+        about.set_transient_for(self.props.active_window)
+        about.set_modal(True)
+        about.set_version(self.version)
+        about.set_program_name("HangMan")
+        about.set_logo_icon_name(self.props.application_id)
+        about.set_authors(["Mathieu Heurtevin"])
+        about.set_comments(_("Play the famous HangMan game"))
+        about.set_wrap_license(True)
+        about.set_license_type(Gtk.License.GPL_3_0)
+        about.set_copyright(_("Copyright 2021 Mathieu Heurtevin"))
+        about.set_website_label(_("GitHub"))
+        about.set_website("https://github.com/Aurnytoraink/Hangman/")
         about.present()
 
     def on_preferences_action(self, widget, _):
@@ -50,8 +63,4 @@ class Application(Gtk.Application):
         action = Gio.SimpleAction.new(name, None)
         action.connect("activate", callback)
         self.add_action(action)
-
-
-def main(version):
-    app = Application()
-    return app.run(sys.argv)
+        

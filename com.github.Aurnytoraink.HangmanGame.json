@@ -4,6 +4,12 @@
     "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",
     "command" : "hangman",
+    "tags" : [
+        "devel",
+        "development",
+        "nightly"
+    ],
+    "desktop-file-name-prefix" : "(Development) ",
     "finish-args" : [
         "--share=network",
         "--share=ipc",

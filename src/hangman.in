@@ -30,12 +30,23 @@ sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 gettext.install('hangman', localedir)
 
-if __name__ == '__main__':
+def main(*args):
     import gi
+
+    gi.require_version('Gtk', '4.0')
+    gi.require_version('Adw', '1')
 
     from gi.repository import Gio
     resource = Gio.Resource.load(os.path.join(pkgdatadir, 'hangman.gresource'))
     resource._register()
 
-    from hangman import main
-    sys.exit(main.main(VERSION))
+    from hangman.main import Application
+    app = Application(VERSION, '@APP_ID@')
+    return app.run(sys.argv)
+
+if __name__ == '__main__':
+
+    try:
+        sys.exit(main(sys.argv))
+    except KeyboardInterrupt:
+        exit()
